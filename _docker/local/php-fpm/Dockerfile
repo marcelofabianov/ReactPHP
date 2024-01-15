@@ -16,6 +16,7 @@ RUN apt-get update -yqq && \
   vim \
   zsh \
   openssl \
+  telnet \
   libpq-dev \
   libaio1 \
   libaio-dev \
