@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-  php-fpm:
-    container_name: php-fpm
+  php:
+    container_name: php
     image: marcelofabianov/php8.3-fpm:latest
     build:
       context: ./_docker/local/php-fpm
