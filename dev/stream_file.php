@@ -7,6 +7,10 @@ use React\Stream\ReadableStreamInterface;
 
 require __DIR__.'/vendor/autoload.php';
 
+if (!file_exists('example.txt')) {
+    echo 'Error: example.txt does not exist. Please run "php generate.php" first.' . PHP_EOL;
+}
+
 $loop = Loop::get();
 $stream = new ReadableResourceStream(fopen('example.txt', 'rb'), $loop);
 
@@ -55,6 +59,8 @@ $manager = new class ($stream, $loop) {
                     $stream->close();
                     break;
                 }
+
+                sleep(2);
             }
 
             $buffer = implode("\n", $lines);
@@ -80,10 +86,6 @@ $manager = new class ($stream, $loop) {
         });
     }
 };
-
-if (!file_exists('example.txt')) {
-    echo 'Error: example.txt does not exist. Please run "php generate.php" first.' . PHP_EOL;
-}
 
 $manager->run();
 
